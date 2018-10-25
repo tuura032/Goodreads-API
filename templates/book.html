@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Book
+{% endblock %}
+
+{% block main %}
+    <h1>Your Book Results:</h1>
+    <ul style="list-style: none;">
+        <li>Title: {{ book.title }}</li>
+        <li>Author: {{ book.author }}</li>
+        <li>Year: {{ book.year }}</li>
+        <li>ISBN: {{ book.isbn }}</li>
+        {% if book_data %}
+        <li>Avg Rating: {{ book_data['average_rating'] }} / 5 </li>
+        <li>{{ book_data['work_ratings_count'] }} Reviews</li>
+        <li>{{ book_data['work_text_reviews_count'] }} Ratings</li>
+        {% endif %}
+    </ul>
+
+    <div id="ratereview">
+        <h2>Rate And Review</h2>
+        <form method="POST" action="{{ url_for('bookid', book_id=book.isbn) }}">
+            <div id="rate">
+                <ul style="list-style: none;">
+                    <li class="radio"><input id="1star" type="radio" name="rating" value="1">
+                    <label for="1star">1 Stars</label></li>
+                    <li class="radio"><input id="2star" type="radio" name="rating" value="2">
+                    <label for="2star">2 Stars</label></li>
+                    <li class="radio"><input id="3star" type="radio" name="rating" value="3">
+                    <label for="3star">3 Stars</label></li>
+                    <li class="radio"><input id="4star" type="radio" name="rating" value="4">
+                    <label for="4star">4 Stars</label></li>
+                    <li class="radio"><input id="5star" type="radio" name="rating" value="5">
+                        <label for="5star">5 Stars</label></li>
+                </ul>
+            </div>
+            <div>
+                <textarea name="review" placeholder="text goes here"></textarea>
+                <button class="btn btn-primary" type="submit">Submit Review</button>
+            </div>
+        </form>
+    </div>
+    {% if review %}
+    <div id="reviews">
+        <h2>User Reviews</h2>
+        {% for reviews in review %}
+        <section class="border1">
+            {{ reviews.username }} rated it {{ reviews.rating }} / 5
+            <p>
+                Review: {{ reviews.review }}
+            </p>
+        </section>
+        <p></p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+{% endblock %}

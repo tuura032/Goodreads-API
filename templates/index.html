@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block main %}
+    {% if session.user_id %}
+    <div class="test">This is the homepage, where everything Starts. 
+
+    Check out our huge library, or feel free to <a href="/search">search</a> for books! Once you find a book, be sure to leave a review!
+    </div>
+    <form action="/" method="POST">
+        <input autocomplete=off type="text" name="search" placeholder="Title, Author, ISBN">
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+
+    <p>
+        {{ secrets }}{{ searchquery }}
+    </p>
+
+    {% else %}
+        <div class="test">This is the homepage, where everything Starts.
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('register') }}">Register</a></li>. 
+            
+        <p>Once registered, you can view all of the books in our library or search for a book! As always, you may read reviews or leave one of your own for your faovrite books!</p>
+        </div>
+    {% endif %}
+    
+
+{% endblock %}

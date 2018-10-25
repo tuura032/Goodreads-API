@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    API
+{% endblock %}
+
+{% block main %}
+    {{ book_data }}
+    <p><h4>Number of reviews</h4></p>
+    {{ book_data['work_text_reviews_count']}}
+    <p><h4>Number of Ratings</h4></p>
+    {{ book_data['work_ratings_count'] }}
+    <p><h4>Average Rating</h4></p>
+    {{ book_data['average_rating'] }} / 5
+{% endblock %}

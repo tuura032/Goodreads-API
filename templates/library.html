@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block main %}
+        Hello World! Here are some books:
+        {% for book in books %}
+            Book ID: {{ book.isbn }}
+            Book title: {{ book.title }}
+            Year: {{ book.year }}
+            <p></p>
+        {% endfor %}
+
+{% endblock %}
