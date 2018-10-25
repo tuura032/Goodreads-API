@@ -10,9 +10,6 @@ from helpers import login_required
 
 app = Flask(__name__)
 
-# Check for environment variable
-if not os.getenv("DATABASE_URL"):
-    raise RuntimeError("DATABASE_URL is not set")
 
 # Configure session to use filesystem
 app.config["SESSION_PERMANENT"] = False
@@ -20,7 +17,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Set up database
-engine = create_engine(os.getenv("DATABASE_URL"))
+engine = create_engine('postgres://ounrhwidprszrx:032394681bdde3ab644e4783da05e2aa7c8b0a0ba71fcf1c53b5c8074daf4cc4@ec2-54-243-147-162.compute-1.amazonaws.com:5432/d1phj9o9enioba')
 db = scoped_session(sessionmaker(bind=engine))
 
 
